@@ -6,6 +6,7 @@ A BigFix console console. A BigFix interactive console program written in Python
 This table maps the possible boolean combinations of BigFix Action properties to a specific Action Type.
 
 | multiple flag | offer flag | exists source fixlet | Resulting Action Type |
+| -------- | ------- | ------- | ------- |
 | false | false | false | Action |
 | false | false | true | Action - Sourced |
 | false | true | false | Offer |
