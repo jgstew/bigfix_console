@@ -1,13 +1,12 @@
-"""
-BigFix Console Application"""
+"""BigFix Console Application."""
 
 import besapi
 import besapi.plugin_utilities
 from textual.app import App, ComposeResult
-from textual.containers import HorizontalGroup, VerticalScroll
-from textual.widgets import Header, DataTable
+from textual.widgets import DataTable, Header
 
 global bes_conn
+
 
 class BigFixConsoleApp(App):
     """A Textual app to manage BigFix actions."""
@@ -24,9 +23,7 @@ class BigFixConsoleApp(App):
         """Populate the DataTable with actions after mounting."""
         table = self.query_one(DataTable)
         # Define columns matching get_actions output
-        columns = [
-            "ID", "State", "Age", "Name", "Type"
-        ]
+        columns = ["ID", "State", "Age", "Name", "Type"]
         table.add_columns(*columns)
 
         try:
@@ -49,6 +46,7 @@ def get_actions(issued_since_days=499):
     session_relevance = f"""(id of it | 0, state of it | "UnknownState", now - time issued of it, name of it | "UnknownName", (  if multiple flag of it then  (  if offer flag of it then  (if exists source fixlet of it then "Baseline Offer" else "Offer Group")  else  (if exists source fixlet of it then "Baseline" else "Action Group")  )  else  (  if offer flag of it then  (if exists source fixlet of it then "Offer - Sourced" else "Offer")  else  (if exists source fixlet of it then "Action - Sourced" else "Action")  )  ) of it) of bes actions whose (state of it = "Open" AND top level flag of it AND time issued of it > (now - {issued_since_days}*day) AND not hidden flag of it)"""
     return bes_conn.session_relevance_json(session_relevance)["result"]
 
+
 def main():
     """Main entry point for the application."""
 
@@ -65,6 +63,7 @@ def main():
 
     app = BigFixConsoleApp()
     app.run()
+
 
 if __name__ == "__main__":
     main()
