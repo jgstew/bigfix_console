@@ -46,7 +46,7 @@ class BigFixConsoleApp(App):
 def get_actions(issued_since_days=499):
     """Fetch actions from BigFix server."""
     global bes_conn
-    session_relevance = f"""(id of it | 0, state of it | "UnknownState", now - time issued of it, name of it | "UnknownName", multiple flag of it, offer flag of it, exists source fixlet of it) of bes actions whose (state of it = "Open" AND top level flag of it AND time issued of it > (now - {issued_since_days}*day))"""
+    session_relevance = f"""(id of it | 0, state of it | "UnknownState", now - time issued of it, name of it | "UnknownName", multiple flag of it, offer flag of it, exists source fixlet of it) of bes actions whose (state of it = "Open" AND top level flag of it AND time issued of it > (now - {issued_since_days}*day) AND not hidden flag of it)"""
     return bes_conn.session_relevance_json(session_relevance)["result"]
 
 def main():
