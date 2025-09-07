@@ -30,7 +30,7 @@ class BigFixConsoleApp(App):
 
         try:
             actions = get_actions()
-            for action in actions:
+            for action in reversed(actions):
                 table.add_row(*[str(item) for item in action])
         except Exception as e:
             table.add_row("Error", str(e), "", "", "")
