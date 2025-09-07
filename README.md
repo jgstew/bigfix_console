@@ -45,3 +45,7 @@ This BigFix Session Relevance query determines the precise type of a BES Action.
   ) of it
 ) of bes actions
 ```
+
+or combined onto a single line:
+
+`(  name of it,  id of it,  (  if multiple flag of it then  (  if offer flag of it then  (if exists source fixlet of it then "Baseline Offer" else "Offer Group")  else  (if exists source fixlet of it then "Baseline" else "Action Group")  )  else  (  if offer flag of it then  (if exists source fixlet of it then "Offer - Sourced" else "Offer")  else  (if exists source fixlet of it then "Action - Sourced" else "Action")  )  ) of it ) of bes actions`
