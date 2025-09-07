@@ -11,6 +11,7 @@ global bes_conn
 class BigFixConsoleApp(App):
     """A Textual app to manage BigFix actions."""
 
+    theme: str = "textual-dark"
     TITLE = "BigFix Console: Actions"
     BINDINGS = [("d", "toggle_dark", "Toggle dark mode")]
 
