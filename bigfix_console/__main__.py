@@ -44,7 +44,7 @@ class BigFixConsoleApp(App):
 
 def get_actions(issued_since_days=499):
     """Fetch actions from BigFix server."""
-    global bes_conn
+
     session_relevance = f"""(id of it | 0, state of it | "UnknownState", now - time issued of it, name of it | "UnknownName", (  if multiple flag of it then  (  if offer flag of it then  (if exists source fixlet of it then "Baseline Offer" else "Offer Group")  else  (if exists source fixlet of it then "Baseline" else "Action Group")  )  else  (  if offer flag of it then  (if exists source fixlet of it then "Offer - Sourced" else "Offer")  else  (if exists source fixlet of it then "Action - Sourced" else "Action")  )  ) of it) of bes actions whose (state of it = "Open" AND top level flag of it AND time issued of it > (now - {issued_since_days}*day) AND not hidden flag of it)"""
 
     return (
