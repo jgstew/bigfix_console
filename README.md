@@ -1,5 +1,10 @@
 # bigfix_console
+
 A BigFix console console. A BigFix interactive console program written in Python using Textual.
+
+This is a work in progress.
+
+At the moment, this only displays actions and has no further interactivity.
 
 
 ## BigFix Action Type Logic Truth Table
