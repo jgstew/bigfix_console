@@ -1,0 +1,23 @@
+[project]
+name = "bigfix-console"
+version = "0.1.0"
+description = "A BigFix console console. A BigFix interactive console program written in Python using Textual."
+authors = [
+    {name = "JGStew",email = "james@jgstew.com"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.12,<4.0.0"
+dependencies = [
+    "besapi (>=3.8.3,<4.0.0)",
+    "textual (>=6.1.0,<7.0.0)"
+]
+
+[tool.poetry]
+
+[tool.poetry.group.dev.dependencies]
+textual-dev = "^1.7.0"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
