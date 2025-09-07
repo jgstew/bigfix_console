@@ -12,12 +12,13 @@ global bes_conn
 class BigFixConsoleApp(App):
     """A Textual app to manage BigFix actions."""
 
+    TITLE = "BigFix Console: Actions"
     BINDINGS = [("d", "toggle_dark", "Toggle dark mode")]
 
     def compose(self) -> ComposeResult:
         """Create child widgets for the app."""
-        yield Header(name="BigFix Console", show_clock=True)
-        yield VerticalScroll(DataTable(id="actions_table", show_header=True, show_cursor=True))
+        yield Header(name=self.TITLE, show_clock=True)
+        yield DataTable(id="actions_table", show_header=True, show_cursor=True)
 
     def on_mount(self) -> None:
         """Populate the DataTable with actions after mounting."""
@@ -27,6 +28,7 @@ class BigFixConsoleApp(App):
             "ID", "State", "Age", "Name", "Multiple", "Offer", "Has Source"
         ]
         table.add_columns(*columns)
+
         try:
             actions = get_actions()
             for action in actions:
