@@ -6,12 +6,13 @@ from textual.app import App, ComposeResult
 from textual.widgets import DataTable, Header
 
 global bes_conn
+bes_conn: besapi.besapi.BESConnection | None
 
 
 class BigFixConsoleApp(App):
     """A Textual app to manage BigFix actions."""
 
-    theme: str = "textual-dark"
+    theme: App.theme  # pyright: ignore[reportInvalidTypeForm]
     TITLE = "BigFix Console: Actions"
     BINDINGS = [("d", "toggle_dark", "Toggle dark mode")]
 
@@ -45,7 +46,12 @@ def get_actions(issued_since_days=499):
     """Fetch actions from BigFix server."""
     global bes_conn
     session_relevance = f"""(id of it | 0, state of it | "UnknownState", now - time issued of it, name of it | "UnknownName", (  if multiple flag of it then  (  if offer flag of it then  (if exists source fixlet of it then "Baseline Offer" else "Offer Group")  else  (if exists source fixlet of it then "Baseline" else "Action Group")  )  else  (  if offer flag of it then  (if exists source fixlet of it then "Offer - Sourced" else "Offer")  else  (if exists source fixlet of it then "Action - Sourced" else "Action")  )  ) of it) of bes actions whose (state of it = "Open" AND top level flag of it AND time issued of it > (now - {issued_since_days}*day) AND not hidden flag of it)"""
-    return bes_conn.session_relevance_json(session_relevance)["result"]
+
+    return (
+        bes_conn.session_relevance_json(  # pyright: ignore[reportOptionalMemberAccess]
+            session_relevance
+        )["result"]
+    )
 
 
 def main():

@@ -7,11 +7,25 @@ authors = [
 ]
 license = {text = "MIT"}
 readme = "README.md"
+url = "https://github.com/jgstew/bigfix_console"
 requires-python = ">=3.12,<4.0.0"
 dependencies = [
     "besapi (>=3.8.3,<4.0.0)",
     "textual (>=6.1.0,<7.0.0)"
 ]
+keywords = ["bigfix", "console", "interactive", "cli"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/jgstew/bigfix_console"
+"Documentation" = "https://github.com/jgstew/bigfix_console/blob/main/README.md"
+"Repository" = "https://github.com/jgstew/bigfix_console.git"
+"Bug Tracker" = "https://github.com/jgstew/bigfix_console/issues"
 
 [tool.poetry]
 
